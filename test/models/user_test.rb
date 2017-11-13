@@ -12,9 +12,11 @@ class UserTest < ActiveSupport::TestCase
     @user.name = "     "
     assert_not @user.valid?
   end
-end
+
 
   test "should be valid" do
     assert @user.valid?
   end
+
+
 end
