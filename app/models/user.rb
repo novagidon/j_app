@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  after_create :set_admin
   before_save { self.email = email.downcase }
   validates :name,  presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -13,5 +14,10 @@ validates :password, presence: true, length: { minimum: 3 }, allow_nil: true
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
                                                   BCrypt::Engine.cost
     BCrypt::Password.create(string, cost: cost)
+  end
+
+  private
+  def set_admin
+   User.count == 1 ? User.first.update_attribute(:admin, true) : true
   end
 end

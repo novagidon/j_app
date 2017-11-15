@@ -1,3 +1,32 @@
+<% if logged_in? %>
+
+<% if notice %>
+<p id="notice"><%= notice %></p>
+<% end %>
+
+      <aside class="col-md-3">
+          <%= render @cart %>
+      </aside>
+
+
+
+<h1>Your Pragmatic Catalog</h1>
+<% @products.each do |product| %>
+  <div class="entry">
+    <%= image_tag(product.avatar.url(:thumb)) %>
+      <h3><%= product.title %></h3>
+      <h3>Dish category: <%= product.dish_category %></h3>
+    <div class="price_line">
+      <span class="price"><%= number_to_currency(product.price) %></span>
+      <%= button_to 'Add to Cart', line_items_path(product_id: product), 
+      class: "btn btn-lg btn-primary" %>
+    </div>
+  </div>
+<% end %>
+
+
+<% else %>
+
 <div class="center jumbotron">
   <h1>Welcome to the Sample App</h1>
 
@@ -12,3 +41,5 @@
 
 <%= link_to image_tag("rails.png", alt: "Rails logo"),
             'http://rubyonrails.org/' %>
+
+<% end %>

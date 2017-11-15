@@ -1,5 +1,9 @@
 class StaticPagesController < ApplicationController
+  include CurrentCart
+  before_action :set_cart
+
   def home
+    @products = Product.order(:title)
   end
 
   def about
@@ -7,4 +11,5 @@ class StaticPagesController < ApplicationController
 
   def contact
   end
+
 end
