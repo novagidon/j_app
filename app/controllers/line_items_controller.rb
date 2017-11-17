@@ -26,6 +26,7 @@ class LineItemsController < ApplicationController
   # POST /line_items
   # POST /line_items.json
   def create
+    
     product = Product.find(params[:product_id])
     @line_item = @cart.add_product(product.id)
 
@@ -34,7 +35,7 @@ class LineItemsController < ApplicationController
         format.html { redirect_to root_path }
         format.json { render :show, status: :created, location: @line_item }
       else
-        format.html { render :new }
+        format.html { redirect_to root_path }
         format.json { render json: @line_item.errors, status: :unprocessable_entity }
       end
     end

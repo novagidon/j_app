@@ -1,5 +1,6 @@
 class Product < ApplicationRecord
   has_many :line_items
+  has_many :orders, through: :line_items
   before_destroy :ensure_not_referenced_by_any_line_item
 
   has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" },
@@ -10,7 +11,8 @@ class Product < ApplicationRecord
 
   validates :title, presence: true, length: { maximum: 50 }
   validates :price, numericality: {greater_than_or_equal_to: 0.01}
-  validates :title, uniqueness: true
+
+  validates :order_date, :inclusion => { in: [Time.now.strftime("%A")] }
 
   def total_price
     product.price * quantity
@@ -26,5 +28,6 @@ class Product < ApplicationRecord
       return false
     end
   end
+
 
 end

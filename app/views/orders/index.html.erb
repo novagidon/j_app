@@ -1,0 +1,21 @@
+
+<h1>Orders</h1>
+
+
+    <% @orders.each do |order| %>
+    <i>Info:</i>
+        <b>Date:</b><%= order.created_at %>
+        <b>Name:</b> <%= order.name %>
+        <b>Phone:</b> <%= order.phone %>
+        <b>Address:</b> <%= order.address %><br>
+
+        <% order.line_items.each do |item| %>
+          <b><%= item.product.dish_category %>:</b> <%= item.product.title %>
+    <% end %>
+            <b>Total price:</b><%= number_to_currency order.total_price %> 
+    <%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %> <br><hr>
+    <% end %>
+
+
+<br>
+

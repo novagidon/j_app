@@ -15,8 +15,34 @@
         <div class="alert alert-<%= message_type %>"><%= message %></div>
       <% end %>
 
+<% if logged_in? %>   
+  <ul class="nav nav-pills">
+  <li class="nav-item">
+    <a class="nav-link active" href="<%= sunday_products_path %>" >Sunday</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="<%= monday_products_path %>">Monday</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="<%= tuesday_products_path %>">Tuesday</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="<%= wednesday_products_path %>">Wednesday</a>
+  </li>
+    <li class="nav-item">
+    <a class="nav-link" href="<%= thursday_products_path %>">Thursday</a>
+  </li>
+    <li class="nav-item">
+    <a class="nav-link" href="<%= friday_products_path %>">Friday</a>
+  </li>
+    <li class="nav-item">
+    <a class="nav-link" href="<%= saturday_products_path %>">Saturday</a>
+  </li>
+</ul>
+<% end %>
+
       <%= yield %>
-      <%= render 'layouts/footer' %>
+
       <%= debug(params) if Rails.env.development? %>
     </div>
   </body>

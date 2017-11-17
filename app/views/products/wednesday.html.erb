@@ -1,0 +1,45 @@
+
+<h1> Menu on Wednesday</h1>
+
+<div class="col-md-3">
+  <i>FIRST COURSE</i>
+<% @products.where(dish_category: "First course", order_date: "Wednesday" ).each do |product| %>
+  <div class="entry">
+    <%= image_tag(product.avatar.url(:thumb)) %>
+      <h3><%= product.title %></h3>
+    <div class="price_line">
+      <span class="price"><%= number_to_currency(product.price) %></span>
+    </div>
+  </div>
+<% end %>
+</div>
+
+<div class="col-md-3">
+  <i>MAIN COURSE</i>
+<% @products.where(dish_category: "Main course", order_date: "Wednesday" ).each do |product| %>
+  <div class="entry">
+    <%= image_tag(product.avatar.url(:thumb)) %>
+      <h3><%= product.title %></h3>
+    <div class="price_line">
+      <span class="price"><%= number_to_currency(product.price) %></span>
+    </div>
+  </div>
+<% end %>
+</div>
+
+<div class="col-md-3">
+  <i>DRINK</i>
+<% @products.where(dish_category: "Drink", order_date: "Wednesday" ).each do |product| %>
+  <div class="entry">
+    <%= image_tag(product.avatar.url(:thumb)) %>
+      <h3><%= product.title %></h3>
+      
+    <div class="price_line">
+      <span class="price"><%= number_to_currency(product.price) %></span>
+    </div>
+  </div>
+<% end %>
+</div>
+
+<br>
+<%= link_to 'Back', root_path %>

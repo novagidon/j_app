@@ -1,10 +1,23 @@
 Rails.application.routes.draw do
+  resources :orders
   resources :line_items
   resources :carts
-  resources :products
-  get    '/create_dish',   to: 'products#new'
-  get 'sessions/new'
 
+    resources :products do
+    collection do 
+      get 'sunday' 
+      get 'monday'   
+      get 'tuesday'  
+      get 'wednesday'  
+      get 'thursday'  
+      get 'friday'   
+      get 'saturday'
+    end
+  end
+
+  get '/create_dish',   to: 'products#new'
+  
+  get 'sessions/new'
   get 'users/new'
 
   root 'static_pages#home'

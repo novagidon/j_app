@@ -1,40 +1,63 @@
 <% if logged_in? %>
 
-<% if notice %>
-<p id="notice"><%= notice %></p>
-<% end %>
 
-      <aside class="col-md-3">
-          <%= render @cart %>
-      </aside>
+<div class="cart">    
+  <%= render @cart %>  
+</div>
 
 
-
-<h1>Your Pragmatic Catalog</h1>
-<% @products.each do |product| %>
+<h1> Menu for today</h1>
+<div class="col-md-3">
+  <i>FIRST COURSE</i>
+<% @products.where(dish_category: "First course", order_date: Time.now.strftime("%A") ).each do |product| %>
   <div class="entry">
     <%= image_tag(product.avatar.url(:thumb)) %>
       <h3><%= product.title %></h3>
-      <h3>Dish category: <%= product.dish_category %></h3>
     <div class="price_line">
       <span class="price"><%= number_to_currency(product.price) %></span>
       <%= button_to 'Add to Cart', line_items_path(product_id: product), 
-      class: "btn btn-lg btn-primary" %>
+      class: "btn btn-primary" %>
     </div>
   </div>
 <% end %>
+</div>
 
+<div class="col-md-3">
+  <i>MAIN COURSE</i>
+<% @products.where(dish_category: "Main course", order_date: Time.now.strftime("%A") ).each do |product| %>
+  <div class="entry">
+    <%= image_tag(product.avatar.url(:thumb)) %>
+      <h3><%= product.title %></h3>
+    <div class="price_line">
+      <span class="price"><%= number_to_currency(product.price) %></span>
+      <%= button_to 'Add to Cart', line_items_path(product_id: product), 
+      class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>
+</div>
+
+<div class="col-md-3">
+  <i>DRINK</i>
+<% @products.where(dish_category: "Drink", order_date: Time.now.strftime("%A") ).each do |product| %>
+  <div class="entry">
+    <%= image_tag(product.avatar.url(:thumb)) %>
+      <h3><%= product.title %></h3>
+    <div class="price_line">
+      <span class="price"><%= number_to_currency(product.price) %></span>
+      <%= button_to 'Add to Cart', line_items_path(product_id: product), 
+      class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>
+</div>
 
 <% else %>
 
 <div class="center jumbotron">
-  <h1>Welcome to the Sample App</h1>
+  <h1>Lunch app</h1>
 
-  <h2>
-    This is the home page for the
-    <a href="http://www.railstutorial.org/">Ruby on Rails Tutorial</a>
-    sample application.
-  </h2>
+  <h2>coming soon</h2>
 
   <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
 </div>

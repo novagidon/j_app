@@ -1,7 +1,4 @@
-
-
-<%= link_to 'New Product', new_product_path %>
-
+<h1>All dishes</h1>
 <ul class="users">
   <% @products.each do |product| %>
     <li>
@@ -9,7 +6,7 @@
       Name: <%= product.title %>,
       Dish category: <%= product.dish_category %>,
       Price: <%= product.price %> |
-      <%= link_to 'Edit', edit_product_path(product) %> or
+      
       <%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %>
     </li>
   <% end %>

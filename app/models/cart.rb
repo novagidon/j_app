@@ -1,6 +1,6 @@
 class Cart < ApplicationRecord
   has_many :line_items, dependent: :destroy
-  #validates :dish_category, uniqueness: true
+  
 
   def total_price
     line_items.to_a.sum { |item| item.total_price }
