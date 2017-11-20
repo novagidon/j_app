@@ -12,12 +12,13 @@ class OrdersControllerTest < ActionDispatch::IntegrationTest
 
   test "should get new" do
     get new_order_url
-    assert_response :success
+    assert_redirected_to root_path
   end
 
   test "should create order" do
     assert_difference('Order.count') do
       post orders_url, params: { order: { address: @order.address, name: @order.name, phone: @order.phone } }
+      assert_redirected_to root_path
     end
 
     assert_redirected_to order_url(Order.last)

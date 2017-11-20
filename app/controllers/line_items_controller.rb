@@ -3,6 +3,7 @@ class LineItemsController < ApplicationController
   before_action :set_cart, only: [:create]
   before_action :set_line_item, only: [:show, :edit, :update, :destroy]
 
+
   # GET /line_items
   # GET /line_items.json
   def index
@@ -29,13 +30,15 @@ class LineItemsController < ApplicationController
     
     product = Product.find(params[:product_id])
     @line_item = @cart.add_product(product.id)
+    @line_item.category = product.dish_category
+
 
     respond_to do |format|
       if @line_item.save
         format.html { redirect_to root_path }
         format.json { render :show, status: :created, location: @line_item }
       else
-        format.html { redirect_to root_path }
+        format.html { redirect_to root_path, notice: 'u can choose 1 dish category.'}
         format.json { render json: @line_item.errors, status: :unprocessable_entity }
       end
     end
@@ -65,7 +68,11 @@ class LineItemsController < ApplicationController
     end
   end
 
+
+
   private
+
+
     # Use callbacks to share common setup or constraints between actions.
     def set_line_item
       @line_item = LineItem.find(params[:id])
@@ -73,6 +80,6 @@ class LineItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def line_item_params
-      params.require(:line_item).permit(:product_id)
+      params.require(:line_item).permit(:product_id, :category)
     end
 end

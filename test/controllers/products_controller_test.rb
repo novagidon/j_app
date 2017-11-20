@@ -21,12 +21,6 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should get edit" do
-    get edit_product_url(@product)
-    assert_response :success
-  end
-
-
 
   test "should destroy product" do
     assert_difference('Product.count', -1) do

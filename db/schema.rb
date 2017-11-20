@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20171116091629) do
   end
 
   create_table "line_items", force: :cascade do |t|
+    t.string "category"
     t.integer "product_id"
     t.integer "cart_id"
     t.datetime "created_at", null: false
@@ -38,7 +39,7 @@ ActiveRecord::Schema.define(version: 20171116091629) do
   end
 
   create_table "products", force: :cascade do |t|
-    t.string "order_date", default: "Friday"
+    t.string "order_date", default: "Tuesday"
     t.string "title"
     t.decimal "price", precision: 8, scale: 2
     t.string "dish_category"

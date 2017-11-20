@@ -1,32 +1,25 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :destroy]
-
+  before_action :find_product, only: [:sunday, :monday, :tuesday, :wednesday, :thursday, :friday, :saturday]
   def sunday
-    @products = Product.order(:title)
   end
 
   def monday
-    @products = Product.order(:title)
   end
 
   def tuesday
-    @products = Product.order(:title)
   end
 
   def wednesday
-    @products = Product.order(:title)
   end
 
   def thursday
-    @products = Product.order(:title)
   end
 
   def friday
-    @products = Product.order(:title)
   end
 
   def saturday
-    @products = Product.order(:title)
   end
 
   # GET /products
@@ -90,6 +83,9 @@ class ProductsController < ApplicationController
   end
 
   private
+def find_product
+  @products = Product.order(:title)
+end
     # Use callbacks to share common setup or constraints between actions.
     def set_product
       @product = Product.find(params[:id])
