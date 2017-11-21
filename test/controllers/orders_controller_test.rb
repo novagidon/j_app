@@ -15,14 +15,6 @@ class OrdersControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_path
   end
 
-  test "should create order" do
-    assert_difference('Order.count') do
-      post orders_url, params: { order: { address: @order.address, name: @order.name, phone: @order.phone } }
-      assert_redirected_to root_path
-    end
-
-    assert_redirected_to order_url(Order.last)
-  end
 
   test "should show order" do
     get order_url(@order)
@@ -39,11 +31,4 @@ class OrdersControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to order_url(@order)
   end
 
-  test "should destroy order" do
-    assert_difference('Order.count', -1) do
-      delete order_url(@order)
-    end
-
-    assert_redirected_to orders_url
-  end
 end
